@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Romantik Mektup Animasyonu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(120deg, #fceabb 0%, #f8b500 100%);
+      overflow: hidden;
+      position: relative;
+      font-family: 'Quicksand', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .decoration {
+      position: absolute;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.8;
+      animation: float 8s infinite ease-in-out;
+    }
+    .blue-butterfly {
+      width: 70px;
+      filter: drop-shadow(0 2px 12px #2196f3aa);
+      animation-duration: 12s;
+    }
+    .rose {
+      width: 60px;
+      filter: drop-shadow(0 2px 8px #ffb6c1aa);
+      animation-duration: 10s;
+    }
+    @keyframes float {
+      0% { transform: translateY(0) scale(1) rotate(-10deg); }
+      50% { transform: translateY(-40px) scale(1.1) rotate(10deg); }
+      100% { transform: translateY(0) scale(1) rotate(-10deg); }
+    }
+    /* Mektup animasyonu */
+    .envelope-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      cursor: pointer;
+      transition: filter 0.3s;
+    }
+    .envelope-container.opened { cursor: default; filter: none; }
+    .envelope {
+      width: 320px;
+      height: 200px;
+      position: relative;
+      perspective: 800px;
+    }
+    .envelope-flap {
+      width: 320px;
+      height: 100px;
+      background: #fff8e1;
+      border: 2px solid #f8b500;
+      border-bottom: none;
+      border-radius: 18px 18px 0 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      transform-origin: bottom center;
+      transition: transform 0.8s cubic-bezier(.77,0,.18,1);
+      box-shadow: 0 4px 16px #f8b50033;
+    }
+    .envelope-container.opened .envelope-flap {
+      transform: rotateX(-120deg);
+    }
+    .envelope-body {
+      width: 320px;
+      height: 160px;
+      background: #fff8e1;
+      border: 2px solid #f8b500;
+      border-radius: 0 0 18px 18px;
+      position: absolute;
+      top: 40px;
+      left: 0;
+      z-index: 1;
+      box-shadow: 0 8px 32px #f8b50022;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      overflow: visible;
+    }
+    .letter {
+      opacity: 0;
+      transition: opacity 0.7s 0.5s;
+      text-align: center;
+      padding: 28px 18px 18px 18px;
+      font-family: 'Pacifico', cursive;
+      font-size: 1.15rem;
+      color: #d72660;
+      line-height: 1.7;
+      z-index: 3;
+      width: 100%;
+      background: #fff8e1;
+      border-radius: 12px;
+      min-height: 90px;
+      max-height: 120px;
+      overflow-y: auto;
+      box-sizing: border-box;
+      box-shadow: 0 2px 8px #f8b50022;
+    }
+    .envelope-container.opened .letter {
+      opacity: 1;
+    }
+    .question {
+      margin-top: 18px;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1.1rem;
+      color: #1976d2;
+      font-weight: bold;
+    }
+    .answer-buttons {
+      margin-top: 12px;
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+    }
+    .answer-buttons button {
+      padding: 10px 28px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: bold;
+      box-shadow: 0 2px 8px #e0b2d7;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .answer-buttons .yes {
+      background: linear-gradient(90deg, #ffb347 0%, #ff5e62 100%);
+      color: #fff;
+      border: 2px solid #ffb347;
+    }
+    .answer-buttons .yes:hover {
+      background: linear-gradient(90deg, #ff5e62 0%, #ffb347 100%);
+      transform: scale(1.1) rotate(-2deg);
+      box-shadow: 0 4px 16px #ffb34755;
+    }
+    .answer-buttons .no {
+      background: linear-gradient(90deg, #b3e5fc 0%, #1976d2 100%);
+      color: #fff;
+      border: 2px solid #1976d2;
+    }
+    .answer-buttons .no:hover {
+      background: linear-gradient(90deg, #1976d2 0%, #b3e5fc 100%);
+      transform: scale(1.1) rotate(2deg);
+      box-shadow: 0 4px 16px #1976d255;
+    }
+    /* Kalp animasyonu */
+    .big-heart, .flying-heart, .romantic-text { display: none; }
+    .show-hearts .big-heart, .show-hearts .flying-heart, .show-hearts .romantic-text { display: block; }
+    .big-heart {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -60%);
+      font-size: 8rem;
+      color: #e53935;
+      text-shadow: 0 4px 32px #e57373, 0 0 80px #fff3;
+      z-index: 2;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: translate(-50%, -60%) scale(1); }
+      50% { transform: translate(-50%, -60%) scale(1.12); }
+      100% { transform: translate(-50%, -60%) scale(1); }
+    }
+    .flying-heart {
+      position: absolute;
+      top: 60%;
+      left: 110vw;
+      font-size: 3rem;
+      color: #e53935;
+      opacity: 0.85;
+      animation: fly-heart 6s linear infinite;
+      z-index: 2;
+    }
+    @keyframes fly-heart {
+      0% { left: 110vw; top: 60%; opacity: 0.85; }
+      10% { opacity: 1; }
+      50% { top: 40%; }
+      100% { left: -10vw; top: 20%; opacity: 0.2; }
+    }
+    .romantic-text {
+      position: absolute;
+      top: 70%;
+      left: 50%;
+      transform: translate(-50%, 0);
+      font-family: 'Pacifico', cursive;
+      font-size: 2.2rem;
+      color: #d72660;
+      text-shadow: 0 2px 12px #fff6, 0 0 8px #f8b50055;
+      z-index: 3;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Arka plan kelebek ve güller -->
+  <img src="gül.jpg" class="decoration rose" style="top: 5%; left: 10%; animation-delay: 0s;">
+  <img src="gül.jpg" class="decoration rose" style="top: 80%; left: 80%; animation-delay: 2s;">
+  <img src="gül.jpg" class="decoration rose" style="top: 20%; left: 85%; animation-delay: 3s;">
+  <img src="gül.jpg" class="decoration rose" style="bottom: 2%; left: 40%; animation-delay: 4.5s;">
+  <img src="gül.jpg" class="decoration rose" style="top: 50%; right: 40%; animation-delay: 5.5s;">
+  <img src="https://pngimg.com/uploads/butterfly/butterfly_PNG1064.png" class="decoration blue-butterfly" style="top: 2%; left: 3%; animation-delay: 0s;">
+  <img src="https://pngimg.com/uploads/butterfly/butterfly_PNG1064.png" class="decoration blue-butterfly" style="top: 10%; right: 5%; animation-delay: 2s;">
+  <img src="https://pngimg.com/uploads/butterfly/butterfly_PNG1064.png" class="decoration blue-butterfly" style="bottom: 5%; left: 8%; animation-delay: 4s;">
+  <img src="https://pngimg.com/uploads/butterfly/butterfly_PNG1064.png" class="decoration blue-butterfly" style="bottom: 10%; right: 10%; animation-delay: 1s;">
+  <img src="https://pngimg.com/uploads/butterfly/butterfly_PNG1064.png" class="decoration blue-butterfly" style="top: 45%; left: 2%; animation-delay: 3s;">
+  <img src="https://pngimg.com/uploads/butterfly/butterfly_PNG1064.png" class="decoration blue-butterfly" style="top: 50%; right: 2%; animation-delay: 5s;">
+  <img src="https://pngimg.com/uploads/butterfly/butterfly_PNG1064.png" class="decoration blue-butterfly" style="top: 30%; left: 45%; animation-delay: 2.5s;">
+
+  <!-- Mektup animasyonu -->
+  <div class="envelope-container" id="envelopeContainer">
+    <div class="envelope">
+      <div class="envelope-flap"></div>
+      <div class="envelope-body">
+        <div class="letter" id="letter">
+          Merhaba güzel insan!<br>
+          Seninle her anı paylaşmak, kelebekler ve güller gibi hayatı renklendirmek istiyorum.<br>
+          <span style="font-size:1.1rem; color:#1976d2;">Benimle çıkar mısın?</span>
+          <div class="question">Cevabın ne olacak?</div>
+          <div class="answer-buttons">
+            <button class="yes" id="yesBtn">Evet 🌹</button>
+            <button class="no" id="noBtn">Hayır 🦋</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Kalp animasyonu (başta gizli) -->
+  <div class="big-heart">❤️</div>
+  <div class="flying-heart">❤️</div>
+  <div class="romantic-text">
+    Seninle her şey çok güzel olacak!<br>
+    <span style="font-size:1.5rem; color:#1976d2;">🦋🌹</span>
+  </div>
+
+  <script>
+    // Mektup açma animasyonu
+    const envelopeContainer = document.getElementById('envelopeContainer');
+    const letter = document.getElementById('letter');
+    let opened = false;
+    envelopeContainer.addEventListener('click', function() {
+      if (!opened) {
+        envelopeContainer.classList.add('opened');
+        opened = true;
+      }
+    });
+    // Butonlar
+    function showHearts() {
+      document.body.classList.add('show-hearts');
+      envelopeContainer.style.display = 'none';
+      // Kalp animasyonları başlasın
+      setInterval(function() {
+        const heart = document.createElement('div');
+        heart.className = 'flying-heart';
+        heart.textContent = '❤️';
+        heart.style.top = (40 + Math.random()*30) + '%';
+        heart.style.fontSize = (2.5 + Math.random()*1.5) + 'rem';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 6500);
+      }, 1200);
+    }
+    document.addEventListener('click', function(e) {
+      if (e.target.id === 'yesBtn' || e.target.id === 'noBtn') {
+        envelopeContainer.classList.remove('opened');
+        envelopeContainer.style.pointerEvents = 'none';
+        setTimeout(showHearts, 800);
+      }
+    });
+  </script>
+</body>
+</html> 

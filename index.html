@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Benimle Çıkar mısın?</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Quicksand', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #e0f7fa 0%, #ffe0ec 100%);
+      min-height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .decoration {
+      position: absolute;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.85;
+      animation: float 10s infinite ease-in-out;
+    }
+    .blue-butterfly {
+      width: 70px;
+      filter: drop-shadow(0 2px 12px #2196f3aa);
+      animation-duration: 14s;
+    }
+    .rose {
+      width: 60px;
+      filter: drop-shadow(0 2px 8px #ffb6c1aa);
+      animation-duration: 10s;
+    }
+    @keyframes float {
+      0% { transform: translateY(0) scale(1) rotate(-10deg); }
+      50% { transform: translateY(-40px) scale(1.1) rotate(10deg); }
+      100% { transform: translateY(0) scale(1) rotate(-10deg); }
+    }
+    .container {
+      background: rgba(255,255,255,0.97);
+      padding: 50px 40px 40px 40px;
+      border-radius: 30px;
+      box-shadow: 0 8px 32px 0 rgba(31,38,135,0.2);
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      max-width: 400px;
+      margin: 60px auto 0 auto;
+    }
+    h1 {
+      font-family: 'Pacifico', cursive;
+      color: #1976d2;
+      margin-bottom: 30px;
+      font-size: 2.2rem;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #b3e5fc;
+    }
+    .buttons {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+    button {
+      padding: 18px 40px;
+      font-size: 1.3rem;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: bold;
+      box-shadow: 0 2px 8px #e0b2d7;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    #yesBtn {
+      background: linear-gradient(90deg, #ffb347 0%, #ff5e62 100%);
+      color: #fff;
+      border: 2px solid #ffb347;
+    }
+    #yesBtn:hover {
+      background: linear-gradient(90deg, #ff5e62 0%, #ffb347 100%);
+      transform: scale(1.1) rotate(-2deg);
+      box-shadow: 0 4px 16px #ffb34755;
+    }
+    #noBtn {
+      background: linear-gradient(90deg, #b3e5fc 0%, #1976d2 100%);
+      color: #fff;
+      border: 2px solid #1976d2;
+      position: relative;
+    }
+    #noBtn:hover {
+      background: linear-gradient(90deg, #1976d2 0%, #b3e5fc 100%);
+      transform: scale(1.1) rotate(2deg);
+      box-shadow: 0 4px 16px #1976d255;
+    }
+    .flowers {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    .flowers img {
+      width: 48px;
+      height: 48px;
+      filter: drop-shadow(0 2px 6px #ffb6c1aa);
+      animation: float 6s infinite alternate;
+    }
+    .gif-container {
+      width: 220px;
+      max-width: 90vw;
+      margin: 20px auto 0 auto;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px #b3e5fc;
+      overflow: hidden;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    @media (max-width: 500px) {
+      .container {
+        padding: 12px 2vw;
+        max-width: 98vw;
+        border-radius: 14px;
+      }
+      h1 {
+        font-size: 1.1rem;
+        margin-bottom: 18px;
+      }
+      .flowers {
+        gap: 8px;
+      }
+      .flowers img {
+        width: 24px;
+        height: 24px;
+      }
+      .buttons {
+        gap: 10px;
+        margin-top: 14px;
+      }
+      button {
+        padding: 8px 10px;
+        font-size: 0.95rem;
+        border-radius: 7px;
+      }
+      .gif-container {
+        width: 95vw;
+        min-width: 0;
+        max-width: 98vw;
+        margin: 12px auto 0 auto;
+        border-radius: 10px;
+      }
+      .tenor-gif-embed {
+        min-width: 0 !important;
+        max-width: 100vw !important;
+      }
+      .decoration.rose, .decoration.blue-butterfly {
+        width: 32px !important;
+        min-width: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Mavi kelebekler ve güller: Her köşe, kenar ve ortada bolca süsleme -->
+  <img src="https://pngimg.com/uploads/butterfly/butterfly_PNG1064.png" class="decoration blue-butterfly" style="top: 2%; left: 3%; animation-delay: 0s;">
+  <img src="https://pngimg.com/uploads/butterfly/butterfly_PNG1064.png" class="decoration blue-butterfly" style="top: 10%; right: 5%; animation-delay: 2s;">
+  <img src="https://pngimg.com/uploads/butterfly/butterfly_PNG1064.png" class="decoration blue-butterfly" style="bottom: 5%; left: 8%; animation-delay: 4s;">
+  <img src="https://pngimg.com/uploads/butterfly/butterfly_PNG1064.png" class="decoration blue-butterfly" style="bottom: 10%; right: 10%; animation-delay: 1s;">
+  <img src="https://pngimg.com/uploads/butterfly/butterfly_PNG1064.png" class="decoration blue-butterfly" style="top: 45%; left: 2%; animation-delay: 3s;">
+  <img src="https://pngimg.com/uploads/butterfly/butterfly_PNG1064.png" class="decoration blue-butterfly" style="top: 50%; right: 2%; animation-delay: 5s;">
+  <img src="https://pngimg.com/uploads/butterfly/butterfly_PNG1064.png" class="decoration blue-butterfly" style="top: 30%; left: 45%; animation-delay: 2.5s;">
+  <img src="gül.jpg" class="decoration rose" style="top: 5%; left: 50%; animation-delay: 1.5s;">
+  <img src="gül.jpg" class="decoration rose" style="bottom: 7%; right: 50%; animation-delay: 2.2s;">
+  <img src="gül.jpg" class="decoration rose" style="top: 80%; left: 10%; animation-delay: 1s;">
+  <img src="gül.jpg" class="decoration rose" style="top: 20%; left: 85%; animation-delay: 3s;">
+  <img src="gül.jpg" class="decoration rose" style="bottom: 2%; left: 40%; animation-delay: 4.5s;">
+  <img src="gül.jpg" class="decoration rose" style="top: 50%; right: 40%; animation-delay: 5.5s;">
+  <div class="container" id="mainContainer">
+    <h1>Benimle çıkar mısın? <span style="font-size:1.5em;">🦋🌹</span></h1>
+    <div class="flowers">
+      <img src="gül.jpg">
+      <img src="https://pngimg.com/uploads/butterfly/butterfly_PNG1064.png" style="filter:drop-shadow(0 2px 12px #2196f3);">
+      <img src="gül.jpg">
+      <img src="https://pngimg.com/uploads/butterfly/butterfly_PNG1064.png" style="filter:drop-shadow(0 2px 12px #2196f3);">
+      <img src="gül.jpg">
+      <img src="https://pngimg.com/uploads/butterfly/butterfly_PNG1064.png" style="filter:drop-shadow(0 2px 12px #2196f3);">
+    </div>
+    <div class="buttons">
+      <button id="yesBtn">Evet 🌹</button>
+      <button id="noBtn">Hayır 🦋</button>
+    </div>
+  </div>
+  <script>
+    const noBtn = document.getElementById('noBtn');
+    const yesBtn = document.getElementById('yesBtn');
+    const container = document.getElementById('mainContainer');
+
+    // Hayır butonu kaçsın
+    noBtn.addEventListener('mouseenter', function() {
+      const containerRect = container.getBoundingClientRect();
+      const btnRect = noBtn.getBoundingClientRect();
+      const maxX = containerRect.width - btnRect.width;
+      const maxY = containerRect.height - btnRect.height;
+      const randX = Math.random() * maxX;
+      const randY = Math.random() * maxY;
+      noBtn.style.position = 'absolute';
+      noBtn.style.left = randX + 'px';
+      noBtn.style.top = randY + 'px';
+    });
+
+    // Evet butonuna basınca güzel mesaj
+    yesBtn.addEventListener('click', function() {
+      container.innerHTML = `
+        <h1 style=\"color:#1976d2; font-family:'Pacifico',cursive; font-size:2.1rem;\">Yaa! Çok mutlu oldum! 💖🥰</h1>
+        <p style=\"font-size:1.2rem; color:#1976d2;\">Seninle mavi kelebekler gibi özgür, güller gibi güzel anılar biriktireceğimize eminim!<br>🌹🦋🌹��🌹</p>
+        <div class="gif-container">
+          <div class="tenor-gif-embed" data-postid="23365256" data-share-method="host" data-aspect-ratio="1.77778" data-width="100%"><a href="https://tenor.com/view/cars2006kiss-sally-cars-kiss-lightning-mcqueen-gif-23365256">Cars2006kiss Sally GIF</a>from <a href="https://tenor.com/search/cars2006kiss-gifs">Cars2006kiss GIFs</a></div>
+        </div>
+        <div class='flowers' style='margin-top:30px;'>
+          <img src=\"gül.jpg\">
+          <img src=\"https://pngimg.com/uploads/butterfly/butterfly_PNG1064.png\" style=\"filter:drop-shadow(0 2px 12px #2196f3);\">
+          <img src=\"gül.jpg\">
+          <img src=\"https://pngimg.com/uploads/butterfly/butterfly_PNG1064.png\" style=\"filter:drop-shadow(0 2px 12px #2196f3);\">
+        </div>
+      `;
+      setTimeout(function() {
+        window.location.href = 'https://www.instagram.com/';
+      }, 6000);
+      // Tenor embed script'i ekle
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.async = true;
+      script.src = 'https://tenor.com/embed.js';
+      document.body.appendChild(script);
+    });
+  </script>
+</body>
+<script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+</html> 
